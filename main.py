@@ -30,7 +30,7 @@ async def getinfoByUser(ctx, username, onlyUSername=False):
     await ctx.send(embed=embed)
     return(code)
   elif 'description in json_Data' and onlyUSername:
-    return(json_Data['description'])
+    return(json_Data['description'], json_Data['user'])
   elif 'status' in json_Data:
     embed = discord.Embed(title = "Error "+json_Data['status'] , description = json_Data['message'], color = discord.Colour.red())
     await ctx.send(embed=embed)
@@ -57,7 +57,7 @@ async def verify(ctx, *,username):
         msg = await bot.wait_for('message',timeout=300.00, check=lambda message: message.author == ctx.author and message.content == "Done")
         if msg:
           
-          description = await getinfoByUser(ctx, username, onlyUSername = True)
+          description, username = await getinfoByUser(ctx, username, onlyUSername = True)
           if code in description:
             embed = discord.Embed(title = "Verification Success", description = "You have been verified!", color = discord.Colour.green())
             await ctx.send(embed=embed)
