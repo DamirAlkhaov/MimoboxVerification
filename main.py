@@ -91,3 +91,4 @@ async def unverify(ctx):
 
 ping()
 bot.run(os.getenv("TOKEN"))
+# Code written and made by Damir and is the property of MimoBox™
