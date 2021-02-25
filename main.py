@@ -40,7 +40,7 @@ async def getinfoByUser(ctx, username, onlyUSername=False):
 @bot.event
 async def on_ready():
     print('online!')
-    game = discord.Game("mv!verify")
+    game = discord.Game("mv!info")
     await bot.change_presence(status=discord.Status.online, activity=game)
 
 @bot.command()
@@ -88,7 +88,13 @@ async def unverify(ctx):
     embed = discord.Embed(title = "Not Verified", description = "First verify in order to unverify, using the mv!verify command.", color = discord.Colour.red())
     await ctx.send(embed=embed)
     
+@bot.command()
+async def info(ctx):
+  embed = discord.Embed(title = "Info", description = "Info about the MimoBox Verification Bot", color=discord.Colour.green())
+  
+  embed.add_field(name="Commands: ", value="mv!verify - verifies a User by giving them a code to add to their description.\nmv!unverify - unverifies a user(if already verified)", inline = True)
 
+  await ctx.send(embed=embed)
 ping()
 bot.run(os.getenv("TOKEN"))
 # Code written and made by Damir and is the property of MimoBox™
